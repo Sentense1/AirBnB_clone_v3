@@ -38,12 +38,3 @@ class User(BaseModel, Base):
                 secure_password = secure.hexdigest()
                 kwargs['password'] = secure_password
         super().__init__(*args, **kwargs)
-
-#    def __set_password(self, pwd):
-#        """
-#            custom setter: encrypts password to MD5
-#        """
-#        secure = hashlib.md5()
-#        secure.update(pwd.encode("utf-8"))
-#        secure_password = secure.hexdigest()
-#        setattr(self, "password", secure_password)

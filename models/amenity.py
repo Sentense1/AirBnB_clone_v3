@@ -19,9 +19,3 @@ class Amenity(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes Amenity"""
         super().__init__(*args, **kwargs)
-
-    def to_dict(self, save_fs=None):
-        """Return a dictionary representation of the City instance"""
-        amenity_dict = self.__dict__.copy()
-        amenity_dict.pop('_sa_instance_state', None)
-        return amenity_dict
