@@ -76,3 +76,9 @@ class Place(BaseModel, Base):
                 if amenity.place_id == self.id:
                     amenity_list.append(amenity)
             return amenity_list
+
+    def to_dict(self, save_fs=None):
+        """Return a dictionary representation of the Place instance"""
+        place_dict = self.__dict__.copy()
+        place_dict.pop('_sa_instance_state', None)
+        return place_dict
