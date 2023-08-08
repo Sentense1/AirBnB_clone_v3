@@ -33,8 +33,8 @@ class State(BaseModel, Base):
                     city_list.append(city)
             return city_list
 
-    def to_dict(self, save_fs=None):
-        """Return a dictionary representation of the State instance"""
-        state_dict = self.__dict__.copy()
-        state_dict.pop('_sa_instance_state', None)
-        return state_dict
+#    def to_dict(self, save_fs=None):
+#        """Return a dictionary representation of the State instance"""
+#        state_dict = self.__dict__.copy()
+#        state_dict.pop('_sa_instance_state', None)
+#        return state_dict

@@ -23,8 +23,8 @@ class City(BaseModel, Base):
         """initializes city"""
         super().__init__(*args, **kwargs)
 
-    def to_dict(self, save_fs=None):
-        """Return a dictionary representation of the City instance"""
-        city_dict = self.__dict__.copy()
-        city_dict.pop('_sa_instance_state', None)
-        return city_dict
+#    def to_dict(self, save_fs=None):
+#        """Return a dictionary representation of the City instance"""
+#        city_dict = self.__dict__.copy()
+#        city_dict.pop('_sa_instance_state', None)
+#        return city_dict
