@@ -161,6 +161,7 @@ def bad_request(error):
     response = {'error': 'Bad Request'}
     return jsonify(response), 400
 
+
 @app_views.route('/places_search', methods=['POST'], strict_slashes=False)
 def places_search():
     """
@@ -175,8 +176,11 @@ def places_search():
     data = request.get_json()
 
     if data and len(data):
+        # Extract the 'states' criteria from the JSON data
         states = data.get('states', None)
+        # Extract the 'cities' criteria from the JSON data
         cities = data.get('cities', None)
+        # Extract the 'amenities' criteria from the JSON data
         amenities = data.get('amenities', None)
 
     # If no criteria provided, retrieve all places
