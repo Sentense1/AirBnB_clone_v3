@@ -220,9 +220,16 @@ def places_search():
         if not list_places:
             list_places = storage.all(Place).values()
         amenities_obj = [storage.get(Amenity, a_id) for a_id in amenities]
+
+        # Debug print statements
+        print("List of amenities_obj:", amenities_obj)
+
         list_places = [place for place in list_places
                        if all([am in place.amenities
                                for am in amenities_obj])]
+
+        # Debug print statements
+        print("Filtered list_places:", list_places)
 
     # Prepare the final list of places for response
     places = []
