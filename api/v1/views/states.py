@@ -60,6 +60,9 @@ def create_state():
     """
     Creates a State object.
     """
+    if request.content_type != 'application/json':
+        # Return 400 error if the content type is not JSON
+        return abort(400, 'Not a JSON')
     if not request.get_json():
         # Return 400 error if the request data is not in JSON format
         abort(400, 'Not a JSON')
