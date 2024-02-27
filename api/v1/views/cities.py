@@ -2,7 +2,6 @@
 '''
 Create a new view for City objects - handles all default RESTful API actions.
 '''
-
 # Import necessary modules
 from flask import abort, jsonify, request
 # Import the State and City models
@@ -73,6 +72,8 @@ def create_city(state_id):
     '''
     Creates a City object.
     '''
+    if request.content_type != 'application/json':
+        return abort(400, 'Not a JSON')
     # Get the State object with the given ID from the storage
     state = storage.get(State, state_id)
     if not state:
@@ -106,6 +107,8 @@ def update_city(city_id):
     '''
     Updates a City object.
     '''
+    if request.content_type != 'application/json':
+        return abort(400, 'Not a JSON')
     # Get the City object with the given ID from the storage
     city = storage.get(City, city_id)
     if city:
