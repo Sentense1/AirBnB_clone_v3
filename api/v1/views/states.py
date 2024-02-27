@@ -86,6 +86,9 @@ def update_state(state_id):
     """
     Updates a State object.
     """
+    if request.content_type != 'application/json':
+        # Return 400 error if the content type is not JSON
+        return abort(400, 'Not a JSON')
     # Get the State object with the given ID from the storage
     state = storage.get(State, state_id)
     if state:
