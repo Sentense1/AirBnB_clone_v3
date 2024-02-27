@@ -2,7 +2,6 @@
 '''
 Creates a view for Amenity objects - handles all default RESTful API actions.
 '''
-
 # Import necessary modules
 from flask import abort, jsonify, request
 from models.amenity import Amenity
@@ -56,15 +55,17 @@ def delete_amenity(amenity_id):
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
     '''Creates an Amenity object'''
+    if request.content_type != 'application/json':
+        return abort(400, 'Not a JSON')
     if not request.get_json():
         # Return 400 error if the request data is not in JSON format
-        abort(400, 'Not a JSON')
+        return abort(400, 'Not a JSON')
 
     # Get the JSON data from the request
     data = request.get_json()
     if 'name' not in data:
         # Return 400 error if 'name' key is missing in the JSON data
-        abort(400, 'Missing name')
+        return abort(400, 'Missing name')
 
     # Create a new Amenity object with the JSON data
     amenity = Amenity(**data)
@@ -80,12 +81,14 @@ def create_amenity():
                  strict_slashes=False)
 def update_amenity(amenity_id):
     '''Updates an Amenity object'''
+    if request.content_type != 'application/json':
+        return abort(400, 'Not a JSON')
     # Get the Amenity object with the given ID from the storage
     amenity = storage.get(Amenity, amenity_id)
     if amenity:
         # Return 400 error if the request data is not in JSON format
         if not request.get_json():
-            abort(400, 'Not a JSON')
+            return abort(400, 'Not a JSON')
 
         # Get the JSON data from the request
         data = request.get_json()
