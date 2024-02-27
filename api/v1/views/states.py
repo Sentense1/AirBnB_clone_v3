@@ -127,6 +127,7 @@ def not_found(error):
     response = {'error': 'Not found'}
     return jsonify(response), 404
 
+
 @app_views.errorhandler(400)
 def bad_request(error):
     """
