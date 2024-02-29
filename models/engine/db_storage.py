@@ -79,7 +79,7 @@ class DBStorage:
         '''get:
         retrieve an object from the file storage by class and id.
         '''
-        if cls in classes.values() and id and type(id) == str:
+        if cls in classes.values() and id and isinstance(id, str):
             d_obj = self.all(cls)
             for key, value in d_obj.items():
                 if key.split(".")[1] == id:
@@ -90,7 +90,10 @@ class DBStorage:
         '''count:
         count the number of objects in storage matching the given class.
         '''
-        data = self.all(cls)
-        if cls in classes.values():
+        if cls not in classes.values():
+             return 0
+        if not cls:
+            data = self.all(cls)
+        if cls and cls in classes.values():
             data = self.all(cls)
         return len(data)
