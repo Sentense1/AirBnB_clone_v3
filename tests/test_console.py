@@ -2,10 +2,13 @@
 """
 Contains the class TestConsoleDocs
 """
-
+import subprocess
 import console
 import inspect
-import pep8
+try:
+    import pep8
+except ImportError:
+    subprocess.run(['pip3', 'install', 'pep8'])
 import unittest
 HBNBCommand = console.HBNBCommand
 
