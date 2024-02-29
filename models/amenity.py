@@ -13,7 +13,8 @@ class Amenity(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
-#        place_amenities = relationship("PlaceAmenity", back_populates="amenity")
+        # place_amenities = relationship("PlaceAmenity",
+    #                                back_populates="amenity")
     else:
         name = ""
 
