@@ -90,8 +90,6 @@ class DBStorage:
         '''count:
         count the number of objects in storage matching the given class.
         '''
-        if cls not in classes.values():
-            return 0
         if not cls:
             data = self.all(cls)
         if cls and cls in classes.values():
