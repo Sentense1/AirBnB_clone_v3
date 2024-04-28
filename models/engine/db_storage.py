@@ -88,14 +88,24 @@ class DBStorage:
         return
 
     def count(self, cls=None):
-        '''count:
-        count the number of objects in storage matching the given class.
-        '''
-        date = 0
-        if not cls:
-            data = self.all(cls)
-        if cls and (cls in classes.values() or cls in classes.keys()):
-            data = self.all(cls)
-        if not data:
-            return 0
-        return len(data)
+        """count the number of objects in storage"""
+        occurence = None
+        if cls:
+            if cls in classes.keys() or cls in classes.values():
+                # user: the name of the class to be retrieved
+                all_objs = self.all(cls)
+                # check if all_objs has values
+                if all_objs:
+                    # if all_objs has values, call len method to
+                    # count its objects
+                    occurence = len(all_objs)
+            else:
+                return 0
+        # for when cls is none
+        else:
+            # retrieve all objects of all classes
+            all_objs = self.all()
+            if all_objs:
+                occurence = len(all_objs)
+
+        return occurence
