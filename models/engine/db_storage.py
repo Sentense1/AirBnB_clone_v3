@@ -94,4 +94,6 @@ class DBStorage:
             data = self.all(cls)
         if cls and cls in classes.values():
             data = self.all(cls)
+        if not data:
+            return 0
         return len(data)
